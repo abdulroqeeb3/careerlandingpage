@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Step: Intake & Payment</title>
+    <style>
+        /* --- 1. Global & Font Setup (Consistent) --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+        :root {
+            --color-primary: #005A9C;
+            --color-primary-dark: #003D6B;
+            --color-dark: #1a1a1a;
+            --color-medium: #454545;
+            --color-light: #f4f4f4;
+            --color-white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--color-light);
+            color: var(--color-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        /* --- 2. Layout --- */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--color-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr; /* Single column for mobile */
+        }
+
+        @media (min-width: 900px) {
+            .main-container {
+                grid-template-columns: 1.2fr 1fr; /* Two columns for desktop */
+            }
+        }
+        
+        .intake-form {
+            padding: 40px;
+        }
+        
+        .payment-summary {
+            padding: 40px;
+            background: #fdfdfd;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (min-width: 900px) {
+            .payment-summary {
+                border-top: none;
+                border-left: 1px solid #eee;
+            }
+        }
+
+        /* --- 3. Typography & Buttons --- */
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-primary-dark);
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--color-light);
+            padding-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--color-medium);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary-dark);
+        }
+        
+        /* Disabled state for the button */
+        .btn:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+
+        /* --- 4. Form Styling --- */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-dark);
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* File Upload Styling */
+        .file-upload-box {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        .file-upload-box:hover {
+            border-color: var(--color-primary);
+            background-color: #fcfcfc;
+        }
+        .file-upload-box p {
+            margin: 0;
+            font-weight: 500;
+            color: var(--color-medium);
+        }
+        .file-upload-box span {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        /* --- 5. Payment Summary Styling --- */
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+        
+        .summary-item.total {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-dark);
+            border-top: 2px solid var(--color-light);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        
+        .payment-form {
+            margin-top: 30px;
+        }
+        
+        .secure-notice {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #333;
+            margin-top: 20px;
+        }
+        
+        /* --- 6. Payment Processor Placeholder --- */
+        #payment-processor-placeholder {
+            height: 150px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #777;
+            font-weight: 500;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="intake-form">
+            <h1>You're Almost Done</h1>
+            <p>Complete these final steps to start your 4-day countdown.</p>
+
+            <form id="intake-form">
+                <h2>Step 1: Your Career Details</h2>
+                
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Best Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="resume-upload">Upload Your Current Resume</label>
+                    <div class="file-upload-box" id="file-drop-area">
+                        <p>Drag & Drop your file here</p>
+                        <span>(DOC, DOCX, or PDF)</span>
+                        <input type="file" id="resume-upload" name="resume-upload" accept=".doc,.docx,.pdf" style="display: none;">
+                    </div>
+                    <div id="file-name-display" style="margin-top: 10px; font-weight: 500;"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="target-role">What is your target role?</label>
+                    <input type="text" id="target-role" name="target-role" placeholder="e.g., 'Director of Marketing at B2B SaaS company'">
+                </div>
+
+                <div class="form-group">
+                    <label for="achievements">Key Achievements or Notes (Optional)</label>
+                    <textarea id="achievements" name="achievements" placeholder="Any specific projects or results you want to highlight?"></textarea>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="payment-summary">
+            <h2>Step 2: Secure Your Order</h2>
+
+            <div class="order-summary">
+                <div class="summary-item">
+                    <span id="summary-pkg-name">Base Package</span>
+                    <span id="summary-pkg-price">$0</span>
+                </div>
+                
+                <div class="summary-item" id="summary-linkedin">
+                    <span>LinkedIn Optimization</span>
+                    <span id="summary-linkedin-price">$0</span>
+                </div>
+                
+                <div class="summary-item" id="summary-cover-letter">
+                    <span>Cover Letter</span>
+                    <span id="summary-cover-letter-price">$0</span>
+                </div>
+                
+                <div class="summary-item total">
+                    <span>TOTAL:</span>
+                    <span id="summary-total">$0</span>
+                </div>
+            </div>
+
+            <div class="payment-form">
+                <div id="payment-processor-placeholder">
+                    <p>This is where your secure payment form from **Stripe** or **Paystack** will be integrated.</p>
+                </div>
+                <p class="secure-notice">🔒 Your payment is 100% secure.</p>
+                
+                <button type="submit" id="submit-button" class="btn" style="margin-top: 20px;">
+                    Complete Order & Start 4-Day Countdown
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- 1. Define Prices ---
+            const packagePrices = {
+                'mid': 225,
+                'senior': 450,
+                'exec': 800,
+                'csuite': 1250
+            };
+            const packageNames = {
+                'mid': 'Mid-Level',
+                'senior': 'Senior/Director',
+                'exec': 'Executive/VP',
+                'csuite': 'C-Suite/Board'
+            };
+            const upsellPrices = {
+                'linkedin': 150,
+                'cover-letter': 75
+            };
+
+            // --- 2. Get Data from URL ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const pkgKey = urlParams.get('pkg') || 'mid';
+            const addLinkedin = (pkgKey === 'csuite') || urlParams.has('add-linkedin'); // C-Suite gets it free
+            const addCoverLetter = urlParams.has('add-cover-letter');
+
+            // --- 3. Calculate Prices ---
+            let pkgPrice = packagePrices[pkgKey];
+            let linkedinPrice = (addLinkedin && pkgKey !== 'csuite') ? upsellPrices.linkedin : 0;
+            let coverLetterPrice = addCoverLetter ? upsellPrices['cover-letter'] : 0;
+            let totalPrice = pkgPrice + linkedinPrice + coverLetterPrice;
+
+            // --- 4. Update Summary on Page ---
+            document.getElementById('summary-pkg-name').textContent = packageNames[pkgKey];
+            document.getElementById('summary-pkg-price').textContent = `$${pkgPrice}`;
+
+            if (addLinkedin) {
+                document.getElementById('summary-linkedin-price').textContent = (pkgKey === 'csuite') ? '(Included)' : `$${linkedinPrice}`;
+            } else {
+                document.getElementById('summary-linkedin').style.display = 'none';
+            }
+
+            if (addCoverLetter) {
+                document.getElementById('summary-cover-letter-price').textContent = `$${coverLetterPrice}`;
+            } else {
+                document.getElementById('summary-cover-letter').style.display = 'none';
+            }
+
+            document.getElementById('summary-total').textContent = `$${totalPrice}`;
+
+            // --- 5. File Upload Logic ---
+            const fileDropArea = document.getElementById('file-drop-area');
+            const fileInput = document.getElementById('resume-upload');
+            const fileNameDisplay = document.getElementById('file-name-display');
+
+            fileDropArea.addEventListener('click', () => fileInput.click());
+            
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length > 0) {
+                    fileNameDisplay.textContent = `File selected: ${fileInput.files[0].name}`;
+                    fileDropArea.style.borderColor = '#005A9C';
+                    fileDropArea.style.backgroundColor = '#f0f5f9';
+                }
+            });
+
+            // Prevent default drag/drop behavior
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                fileDropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            // Handle file drop
+            fileDropArea.addEventListener('drop', handleDrop, false);
+            function handleDrop(e) {
+                let dt = e.dataTransfer;
+                let files = dt.files;
+                fileInput.files = files; // Assign dropped files to the input
+                fileInput.dispatchEvent(new Event('change')); // Trigger the change event
+            }
+        });
+    </script>
+</body>
+</html>
