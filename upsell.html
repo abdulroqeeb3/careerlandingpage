@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Toolkit - Executive Career Services</title>
+    <style>
+        /* --- 1. Global & Font Setup (Consistent with index.html) --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+        :root {
+            --color-primary: #005A9C;
+            --color-primary-dark: #003D6B;
+            --color-dark: #1a1a1a;
+            --color-medium: #454545;
+            --color-light: #f4f4f4;
+            --color-white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--color-light);
+            color: var(--color-dark);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* --- 2. Layout --- */
+        .checkout-container {
+            width: 100%;
+            max-width: 700px;
+            background: var(--color-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+        }
+
+        /* --- 3. Typography & Buttons --- */
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-primary-dark);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--color-light);
+            padding-bottom: 10px;
+        }
+        
+        p {
+            font-size: 1rem;
+            color: var(--color-medium);
+            margin-bottom: 20px;
+        }
+        
+        .subheadline {
+            text-align: center;
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: block; /* Makes it full-width */
+            width: 100%;
+            text-align: center;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: var(--color-primary-dark);
+        }
+
+        /* --- 4. Upsell Cards --- */
+        .upsell-card {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .upsell-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .upsell-card label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .upsell-card input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            accent-color: var(--color-primary);
+        }
+        
+        .upsell-content strong {
+            font-size: 1.1rem;
+            color: var(--color-dark);
+        }
+        
+        .upsell-content p {
+            font-size: 0.95rem;
+            margin: 5px 0 0 0;
+        }
+        
+        /* C-Suite notice */
+        .csuite-notice {
+            background: #e6f0f7;
+            border-left: 4px solid var(--color-primary);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .csuite-notice p {
+            margin: 0;
+            font-weight: 500;
+            color: var(--color-primary-dark);
+        }
+
+        /* --- 5. Order Summary --- */
+        .order-summary {
+            margin-top: 30px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .summary-item.total {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            border-top: 2px solid var(--color-light);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        
+        /* Utility class to hide elements */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-container">
+        <form id="upsell-form" action="intake.html" method="GET">
+            <h1>You Have Secured Your Package.</h1>
+            <p class="subheadline">A powerful resume gets you the interview. A complete professional brand gets you headhunted.</p>
+
+            <h2>Complete Your Toolkit</h2>
+
+            <div id="csuite-notice" class="csuite-notice hidden">
+                <p>Your C-Suite Package already includes full LinkedIn Optimization.</p>
+            </div>
+            
+            <div id="linkedin-upsell" class="upsell-card">
+                <label>
+                    <input type="checkbox" id="add-linkedin" name="add-linkedin" value="150">
+                    <div class="upsell-content">
+                        <strong>YES, Add Full LinkedIn Profile Optimization</strong> (+ $150)
+                        <p>Your resume is for *applying*. Your LinkedIn profile is for *being recruited*. We will rewrite your Headline, "About" section, and Experience to rank you higher in recruiter searches.</p>
+                    </div>
+                </label>
+            </div>
+
+            <div id="cover-letter-upsell" class="upsell-card">
+                <label>
+                    <input type="checkbox" id="add-cover-letter" name="add-cover-letter" value="75">
+                    <div class="upsell-content">
+                        <strong>YES, Add a Dynamic Cover Letter</strong> (+ $75)
+                        <p>Do not let a generic cover letter undermine a premium resume. We will craft a persuasive, story-driven template that immediately demonstrates your value.</p>
+                    </div>
+                </label>
+            </div>
+            
+            <input type="hidden" id="base-package" name="pkg" value="">
+
+            <div class="order-summary">
+                <h2>Your Order</h2>
+                
+                <div class="summary-item">
+                    <span>Base Package:</span>
+                    <span id="summary-pkg-name">Loading...</span>
+                    <span id="summary-pkg-price">$0</span>
+                </div>
+                
+                <div id="summary-linkedin" class="summary-item hidden">
+                    <span>LinkedIn Optimization:</span>
+                    <span id="summary-linkedin-price">$150</span>
+                </div>
+                
+                <div id="summary-cover-letter" class="summary-item hidden">
+                    <span>Cover Letter:</span>
+                    <span id="summary-cover-letter-price">$75</span>
+                </div>
+                
+                <div class="summary-item total">
+                    <span>Total:</span>
+                    <span id="summary-total">$0</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn" style="margin-top: 30px;">Proceed to Final Step</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- 1. Define Package Details ---
+            const packages = {
+                'mid': { name: 'Mid-Level', price: 225 }, // Using an average price for simplicity
+                'senior': { name: 'Senior/Director', price: 450 },
+                'exec': { name: 'Executive/VP', price: 800 },
+                'csuite': { name: 'C-Suite/Board', price: 1250 }
+            };
+
+            // --- 2. Get Package from URL ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const pkgKey = urlParams.get('pkg') || 'mid'; // Default to 'mid' if no param
+            const selectedPackage = packages[pkgKey];
+
+            // Store the package key in the hidden form field
+            document.getElementById('base-package').value = pkgKey;
+            
+            // --- 3. Get Checkboxes and Summary Elements ---
+            const linkedinCheck = document.getElementById('add-linkedin');
+            const coverLetterCheck = document.getElementById('add-cover-letter');
+            
+            const summaryPkgName = document.getElementById('summary-pkg-name');
+            const summaryPkgPrice = document.getElementById('summary-pkg-price');
+            const summaryLinkedin = document.getElementById('summary-linkedin');
+            const summaryCoverLetter = document.getElementById('summary-cover-letter');
+            const summaryTotal = document.getElementById('summary-total');
+
+            // --- 4. Check for C-Suite ---
+            if (pkgKey === 'csuite') {
+                // Hide the LinkedIn upsell option
+                document.getElementById('linkedin-upsell').classList.add('hidden');
+                // Show the C-Suite notice
+                document.getElementById('csuite-notice').classList.remove('hidden');
+                // Check the LinkedIn box by default (since it's included) but disable it
+                linkedinCheck.checked = true;
+                linkedinCheck.disabled = true;
+            }
+
+            // --- 5. Update Summary Function ---
+            function updateSummary() {
+                let total = selectedPackage.price;
+
+                // Base Package
+                summaryPkgName.textContent = selectedPackage.name;
+                summaryPkgPrice.textContent = `$${selectedPackage.price}`;
+
+                // LinkedIn
+                if (linkedinCheck.checked) {
+                    summaryLinkedin.classList.remove('hidden');
+                    // Only add price if it's NOT C-Suite (since it's free for them)
+                    if (pkgKey !== 'csuite') {
+                        total += parseFloat(linkedinCheck.value);
+                    }
+                } else {
+                    summaryLinkedin.classList.add('hidden');
+                }
+
+                // Cover Letter
+                if (coverLetterCheck.checked) {
+                    summaryCoverLetter.classList.remove('hidden');
+                    total += parseFloat(coverLetterCheck.value);
+                } else {
+                    summaryCoverLetter.classList.add('hidden');
+                }
+                
+                // Total
+                summaryTotal.textContent = `$${total}`;
+            }
+
+            // --- 6. Event Listeners ---
+            linkedinCheck.addEventListener('change', updateSummary);
+            coverLetterCheck.addEventListener('change', updateSummary);
+
+            // --- 7. Initial Call ---
+            updateSummary();
+        });
+    </script>
+</body>
+</html>
