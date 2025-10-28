@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Career Services</title>
+    <style>
+        /* --- 1. Global & Font Setup --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+        :root {
+            --color-primary: #005A9C; /* A strong, professional blue */
+            --color-primary-dark: #003D6B;
+            --color-dark: #1a1a1a;
+            --color-medium: #454545;
+            --color-light: #f4f4f4;
+            --color-white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--color-white);
+            color: var(--color-dark);
+            line-height: 1.7;
+            overflow-x: hidden; /* Prevents horizontal scroll from animations */
+        }
+
+        /* --- 2. Layout & Containers --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 90px 20px;
+        }
+
+        /* --- 3. Typography --- */
+        h1, h2, h3 {
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--color-primary-dark);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+        }
+
+        h2 { /* Section Titles */
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h3 { /* Package Titles */
+            font-size: 1.5rem; /* 24px */
+            margin-bottom: 15px;
+            color: var(--color-primary);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--color-medium);
+            max-width: 700px;
+        }
+
+        /* --- 4. Buttons --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- 5. Section Styling --- */
+
+        /* Header (Section 1) */
+        .header {
+            background: var(--color-light);
+            text-align: center;
+            padding: 120px 20px;
+        }
+        .header h1 {
+            margin-bottom: 20px;
+        }
+        .header p {
+            font-size: 1.25rem;
+            color: var(--color-medium);
+            margin: 0 auto 30px auto;
+        }
+        .header p strong {
+            color: var(--color-primary);
+        }
+
+        /* Problem (Section 2) */
+        .problem {
+            text-align: center;
+        }
+        .problem p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Packages (Section 3) */
+        .packages {
+            background: var(--color-light);
+        }
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .package-card {
+            background: var(--color-white);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        /* This is the "illuminate & lift" animation */
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .package-card .price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-medium);
+            margin-bottom: 15px;
+        }
+        .package-card .service {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .package-card .who {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 25px;
+            flex-grow: 1; /* Pushes button to bottom */
+        }
+        .package-card .btn {
+            text-align: center;
+        }
+
+        /* Process (Section 4) */
+        .process-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        .step-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+        .step-content h3 {
+            font-size: 1.25rem;
+            color: var(--color-dark);
+            margin-bottom: 5px;
+        }
+        .step-content p {
+            font-size: 1rem;
+            color: var(--color-medium);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* Testimonials (Section 5) */
+        .testimonials {
+            background: var(--color-light);
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--color-white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--color-primary);
+        }
+        .testimonial-card p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #333;
+            margin: 0 0 15px 0;
+        }
+        .testimonial-card .author {
+            font-weight: 700;
+            color: var(--color-primary-dark);
+        }
+
+        /* --- 6. Footer --- */
+        .footer {
+            background: var(--color-dark);
+            color: var(--color-light);
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .footer p {
+            color: var(--color-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* --- 7. Animation --- */
+        /* This class will be added by JavaScript */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        /* This class is added when the element is in view */
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 8. Responsive Adjustments --- */
+        @media (min-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (min-width: 1024px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="fade-in">Stop Competing. Start Dominating.</h1>
+        <p class="fade-in">Your experience is executive-level. Your resume is not. We deliver board-room-ready career documents in <strong>4 days flat</strong>.</p>
+        <a href="#packages" class="btn fade-in">Select Your Tier</a>
+    </header>
+
+    <main>
+        <section class="problem container">
+            <h2 class="fade-in">The Truth About the "Black Hole"</h2>
+            <p class="fade-in">You are not being rejected by recruiters. You are being filtered by <strong>machines</strong>. Over 75% of applications are discarded by Applicant Tracking Software (ATS) before a human ever sees them. Your experience, your quantifiable achievements, and your leadership potential are being rendered invisible by a keyword algorithm.</p>
+            <p class="fade-in">This is not a talent problem. It is a marketing problem.</p>
+        </section>
+
+        <section class="packages" id="packages">
+            <div class="container">
+                <h2 class="fade-in">Select Your Professional Tier</h2>
+                <p class="fade-in" style="text-align: center; margin-left: auto; margin-right: auto; margin-top: -30px; margin-bottom: 50px;">We do not offer generic templates. We engineer a specific narrative strategy based on your seniority.</p>
+                
+                <div class="package-grid">
+                    <div class="package-card fade-in">
+                        <h3>Mid-Level Professional</h3>
+                        <p class="price">$150 – $300</p>
+                        <p class="service">Strategic keyword optimization and modern formatting to ensure 100% ATS compliance.</p>
+                        <p class="who"><strong>Who It's For:</strong> The professional whose experience is strong but is being consistently overlooked by automated filters.</p>
+                        <a href="#" class="btn">Select Mid-Level Package</a>
+                    </div>
+                    
+                    <div class="package-card fade-in">
+                        <h3>Senior / Director Level</h3>
+                        <p class="price">$300 – $600</p>
+                        <p class="service">Structural refinement focused on building <strong>measurable impact statements</strong> and executive readability.</p>
+                        <p class="who"><strong>Who It's For:</strong> The leader who must translate "responsibilities" into "quantifiable, high-impact achievements."</p>
+                        <a href="#" class="btn">Select Senior-Level Package</a>
+                    </div>
+                    
+                    <div class="package-card fade-in">
+                        <h3>Executive / VP Level</h3>
+                        <p class="price">$600 – $1,000</p>
+                        <p class="service">A comprehensive rewrite delivering <strong>dual formats (ATS + Executive)</strong>. Tailored for maximum visibility.</p>
+                        <p class="who"><strong>Who It's For:</strong> The executive who must command attention from both the algorithm and the selection committee.</p>
+                        <a href="#" class="btn">Select Executive Package</a>
+                    </div>
+                    
+                    <div class="package-card fade-in">
+                        <h3>C-Suite / Board Level</h3>
+                        <p class="price">$1,000 – $1,500</p>
+                        <p class="service">Full narrative re-engineering. Includes <strong>dual-format delivery</strong>, <strong>full LinkedIn optimization</strong>, and Fortune 500 standards.</p>
+                        <p class="who"><strong>Who It's For:</strong> The C-Level leader whose personal brand must secure confidence, define a vision, and drive the business.</p>
+                        <a href="#" class="btn">Select C-Suite Package</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="process container">
+            <h2 class="fade-in">Your 4-Day Path to an Interview</h2>
+            <div class="process-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Select Your Tier</h3>
+                        <p>Choose the package that matches your professional seniority.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Define Your Toolkit</h3>
+                        <p>On the next page, you will have the option to add LinkedIn Optimization or a Dynamic Cover Letter.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Submit Your Career Story</h3>
+                        <p>Complete our focused questionnaire and upload your current resume.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Receive Your Documents</h3>
+                        <p>Within a <strong>maximum of 4 business days</strong>, your complete, high-impact career documents will be delivered.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="fade-in">What Our Clients Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card fade-in">
+                        <p>"I was stuck at the Director level for three years. The 'structural refinement' was the key. I landed a VP role in 28 days. This is an investment, not an expense."</p>
+                        <p class="author">Michael T., Vice President, Technology</p>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <p>"The C-Suite package is not a resume service; it's a complete narrative realignment. The way they framed my P&L experience was brilliant. I've never felt more confident."</p>
+                        <p class="author">Sarah J., Chief Financial Officer</p>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <p>"I went from zero callbacks to three interview requests from my target companies in one week. The ATS optimization made all the difference."</p>
+                        <p class="author">David L., Senior Project Manager</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Executive Career Services. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Triggers when 10% of the element is visible
+            });
+
+            // Target all elements with the .fade-in class
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+
+</body>
+</html>
